@@ -1,0 +1,120 @@
+<?php include "../../config/core_edu.php";
+
+	// Қолданушыны тексеру
+	if (!$user_id) go('/education/');
+
+	// Сайттың баптаулары
+	$menu_name = 'acc';
+	$site_set['utop_nm'] = 'Жеке деректер';
+	$site_set['utop_bk'] = 'my/list.php';
+	if (isset($_GET['back'])) $site_set['utop_bk'] = $_GET['back'];
+
+	$site_set['um_menu'] = true;
+	$css = ['education/acc'];
+	// $js = [];
+?>
+<?php include "../block/header.php"; ?>
+
+	<div class="up">
+
+		<div class="up_top">
+			<div class="up_lg">
+				<div class="up_logo">
+					<?php if ($user['img']): ?> <div class="up_logo_c lazy_img" data-src="/assets/uploads/users/<?=$user['img']?>"></div>
+					<?php else: ?> <div class="up_logo_icons"><i class="fal fa-user"></i></div> <?php endif ?>
+				</div>
+				<div class="up_logo_upd"><i class="fal fa-camera"></i></div>
+			</div>
+			<div class="up_inf">
+				<div class="up_name"><?=$user['name']?> <?=$user['surname']?></div>
+				<div class="up_phone">
+					<?php if ($user['phone'] != null): ?> <?=$user['phone']?>
+					<?php else: ?> <?=$user['mail']?> <?php endif ?>
+				</div>
+			</div>
+		</div>
+
+		<div class="bl_c">
+			
+			<div class="up_c">
+
+				<div class="up_lt">
+					<div class="up_li">
+						<div class="menu_cin"><i class="fal fa-user-circle"></i></div>
+						<div class="menu_cih">Жеке деректер</div>
+					</div>
+					<!-- <a class="up_li" href="/education/chat/">
+						<div class="menu_cin"><i class="fal fa-comments-alt"></i></div>
+						<div class="menu_cih">Куратормен чат
+							<?php if (fun::chat_view_sum2($user_id) != 0): ?>
+								<span><?=fun::chat_view_sum2($user_id)?></span>
+							<?php endif ?>
+						</div>
+					</a> -->
+					<!-- <a class="up_li" href="/education/homework/">
+						<div class="menu_cin"><i class="fal fa-pennant"></i></div>
+						<div class="menu_cih">Үй жұмыстарым</div>
+					</a> -->
+					<!-- <a class="up_li" href="/education/reviews/">
+						<div class="menu_cin"><i class="fal fa-comment-alt-lines"></i></div>
+						<div class="menu_cih">Пікірлерім</div>
+					</a> -->
+
+					<?php if (!$user_right): ?>
+
+					<?php else: ?>
+						<a class="up_li" href="/education/users/">
+							<div class="menu_cin"><i class="fal fa-users"></i></div>
+							<div class="menu_cih">Қолданушылар</div>
+						</a>
+						<!-- <a class="cmenu_i <?=($menu_name=='users'?'cmenu_i_act':'')?>" href="/education/users/">Қолданушылар</a> -->
+					<?php endif ?>
+
+				</div>
+
+				<div class="up_lt">
+					<a class="up_li" href="#">
+						<div class="menu_cin"><i class="fal fa-question-circle"></i></div>
+						<div class="menu_cih">Жиі қойылатын сұрақтар</div>
+					</a>
+					<a class="up_li" href="https://wa.me/<?=$site['whatsapp']?>">
+						<div class="menu_cin"><i class="fal fa-comment-dots"></i></div>
+						<div class="menu_cih">Көмек (Whatsapp)</div>
+					</a>
+				</div>
+				
+				<div class="up_lt">
+					<a class="up_li" href="#">
+						<div class="menu_cin"><i class="fal fa-award"></i></div>
+						<div class="menu_cih">Академия жайлы</div>
+					</a>
+					<a class="up_li" href="/education/all/offer.php">
+						<div class="menu_cin"><i class="fal fa-users-cog"></i></div>
+						<div class="menu_cih">Қолдану ережелері</div>
+					</a>
+					<a class="up_li" href="/education/all/privacy.php">
+						<div class="menu_cin"><i class="fal fa-users-cog"></i></div>
+						<div class="menu_cih">Авторлық құқық</div>
+					</a>
+				</div>
+
+				<div class="up_exit">
+					<a class="btn btn_back" href="/education/exit.php">
+						<i class="far fa-sign-out"></i>
+						<span>Шығу</span>
+					</a>
+				</div>
+
+			</div>
+			<div class="up_cg">
+				<a href="https://gprog.kz" target="_blank" class="gprog_bl">
+					<span>#gprog-та</span>
+					<div class="gprog_heart"><i class="fas fa-heart"></i></div>
+					<span>жасалған</span>
+				</a>
+			</div>
+
+		</div>
+	</div>
+
+<?php include "../block/footer.php"; ?>

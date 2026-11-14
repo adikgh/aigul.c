@@ -1,0 +1,93 @@
+/* AIGUL ASQAR — жұмсақ, тыныш палитра (aa.html негізінде).
+   Айнымалылар body-ге жазылған: кез келген :root анықтамасын басып озады. */
+body{
+	--ag-bg: #f8f6f2;
+	--ag-panel: #fff;
+	--ag-ink: #28241f;
+	--ag-muted: #82796d;
+	--ag-line: #e9e3d9;
+	--ag-gold: #a78356;
+	--ag-gold2: #e7d8c0;
+	--ag-soft: #f2ece3;
+	--ag-dark: #292721;
+	--ag-green: #48715e;
+	--ag-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+	--ag-sans: 'Inter', Arial, sans-serif;
+
+	--bag: #f8f6f2;
+	--bag2: #fff;
+	--bag_sec: #f2ece3;
+	--bag_tir: #e9e3d9;
+	--gold: #a78356;
+	--red: #ad665d;
+	--red1: rgba(173,102,93,.1);
+
+	--bl: #28241f;
+	--bl0: rgba(40,36,31,0);  --bl1: rgba(40,36,31,.1); --bl2: rgba(40,36,31,.2); --bl3: rgba(40,36,31,.3);
+	--bl4: rgba(40,36,31,.4); --bl5: rgba(40,36,31,.5); --bl6: rgba(40,36,31,.6); --bl7: rgba(40,36,31,.7);
+	--bl8: rgba(40,36,31,.8); --bl9: rgba(40,36,31,.9);
+
+	--gr: #e9e3d9;
+	--gr1: rgba(233,227,217,.1); --gr2: rgba(233,227,217,.45); --gr3: rgba(233,227,217,.6); --gr4: rgba(233,227,217,.7);
+	--gr5: rgba(233,227,217,.8); --gr6: rgba(233,227,217,.85); --gr7: rgba(233,227,217,.9); --gr8: rgba(233,227,217,.95); --gr9: #e9e3d9;
+
+	--cl: #a78356;
+	--cl1: rgba(167,131,86,.1); --cl2: rgba(167,131,86,.2); --cl3: rgba(167,131,86,.3); --cl4: rgba(167,131,86,.4);
+	--cl5: rgba(167,131,86,.5); --cl6: rgba(167,131,86,.6); --cl7: rgba(167,131,86,.7); --cl8: rgba(167,131,86,.85); --cl9: rgba(167,131,86,.9);
+
+	--cm: #8a7a64;
+	--cm1: rgba(138,122,100,.1); --cm2: rgba(138,122,100,.2); --cm3: rgba(138,122,100,.3); --cm4: rgba(138,122,100,.4);
+	--cm5: rgba(138,122,100,.5); --cm6: rgba(138,122,100,.6); --cm7: rgba(138,122,100,.7); --cm8: rgba(138,122,100,.8); --cm9: rgba(138,122,100,.9);
+
+	background: var(--ag-bg) !important;
+	color: var(--ag-ink);
+	font-family: var(--ag-sans);
+	letter-spacing: 0;
+	word-spacing: 0;
+}
+
+/* Тақырыптар — серифті, жұмсақ */
+h1, h2, h3, .logo, .head_c h4, .head_c h1, .head_c h2, .hd_h, .ucours_h, .uc_ih, .ag_serif{
+	font-family: var(--ag-serif);
+	font-weight: 500;
+	letter-spacing: .2px;
+}
+.head_c h4{font-size:32px}
+.logo{letter-spacing:3px;font-size:21px;font-weight:500}
+
+/* Батырмалар */
+.btn{
+	border-radius: 10px;
+	box-shadow: none !important;
+	font-weight: 600;
+	font-size: 14px;
+	letter-spacing: .2px;
+}
+.btn:hover{background:#8f6f47}
+.btn_cl{background:#fff;border:1px solid var(--ag-line);color:#51473c}
+.btn_cl:hover{background:var(--ag-soft)}
+
+/* Карточкалар жалпы — жұмсақ шекара, көлеңкесіз */
+.ucours_i, .uc_i, .bq3_ic, .ucours_ic, .itm_c, .uitem_c{
+	border-color: var(--ag-line) !important;
+	box-shadow: none !important;
+}
+
+/* Клиент кабинеті: жоғарғы мәзір */
+.header{background:rgba(252,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--ag-line)}
+.cmenu_i{font-size:14px;color:#51493e}
+.cmenu_i_act{background:var(--ag-soft) !important;color:var(--ag-ink)}
+.cuser_c{color:var(--ag-ink)}
+.cuser_i .lazy_img{background-color:var(--ag-gold2);color:var(--ag-ink)}
+
+/* Формалар */
+input, textarea, select{font-family:var(--ag-sans)}
+.form_im_txt, .form_txt, .form_im input, .form_im textarea{border-color:#ddd6cb}
+
+/* Бос күй, ескертпе */
+.ag_note{background:#f3ede3;border-radius:9px;padding:13px 16px;color:#6b5941;font-size:13px;line-height:1.6}
+
+/* Эмодзи орнына */
+.emoji_wave{font-size:40px;line-height:1}
+.up_logo_icons i, .upl_logo_img i{font-size:28px;color:var(--ag-muted)}
+.oko_s_card{display:inline-flex;gap:10px;align-items:center;padding:16px 22px;border:1px solid var(--ag-line);border-radius:12px;background:#fff;font-size:20px;cursor:pointer;margin:15px 0}

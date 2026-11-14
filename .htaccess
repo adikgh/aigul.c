@@ -1,0 +1,8 @@
+AddDefaultCharset utf-8
+ErrorDocument 404 /404.php
+Options -Indexes
+
+# Қызметтік папкаларды сырттан ашуға болмайды
+RewriteEngine On
+RewriteRule ^(config|sql|logs)(/|$) - [F,L]
+RewriteRule (^|/)\.git(/|$) - [F,L]

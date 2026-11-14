@@ -1,0 +1,6 @@
+/config/db.php
+/config/db.php.bak
+/assets/uploads/*/*
+!/assets/uploads/*/.gitkeep
+/logs/*
+!/logs/.htaccess
