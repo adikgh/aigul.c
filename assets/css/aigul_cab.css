@@ -1,0 +1,98 @@
+/* AIGUL ASQAR — клиент кабинетінің басты беті */
+.cb{padding:16px 0 110px}
+.cb h1,.cb h2,.cb h3{font-family:var(--ag-serif);font-weight:500;color:var(--ag-ink)}
+.cb_k{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#e7d5bb}
+.cb_btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:100px;background:#fff;color:#4a382b;font-size:14px;font-weight:600;transition:.2s}
+.cb_btn:hover{transform:translateY(-1px)}
+.cb_btn_d{background:#5b4636;color:#fff}
+
+/* hero */
+.cb_hero{position:relative;overflow:hidden;border-radius:24px;padding:24px 20px;background:linear-gradient(135deg,#2a221c,#5b4636 60%,#a78356);color:#fff;display:flex;flex-direction:column;gap:22px}
+.cb_hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;border:1px solid #ffffff1f;right:-90px;bottom:-120px;box-shadow:0 0 0 36px #ffffff08}
+.cb_hero h1{color:#fff;font-size:32px;line-height:1.1;margin:10px 0}
+.cb_hero p{font:italic 18px/1.4 var(--ag-serif);color:#f1e5d4;max-width:520px;margin-bottom:18px}
+.cb_ring{--p:0;position:relative;z-index:1;width:120px;height:120px;border-radius:50%;flex-shrink:0;align-self:flex-start;background:conic-gradient(#e7d8c0 calc(var(--p)*1%),#ffffff22 0);display:grid;place-items:center}
+.cb_ring>div{width:96px;height:96px;border-radius:50%;background:#3d3027;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cb_ring b{font:500 28px var(--ag-serif)}
+.cb_ring span{font-size:10px;color:#d9c7ad;line-height:1.2}
+
+/* kpi */
+.cb_kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.cb_kpi div{background:#fff;border:1px solid var(--ag-line);border-radius:18px;padding:16px;display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center}
+.cb_kpi i{grid-row:span 2;width:40px;height:40px;border-radius:12px;background:var(--ag-soft);display:grid;place-items:center;color:#8a6a4f}
+.cb_kpi b{font:500 26px/1 var(--ag-serif)}
+.cb_kpi span{font-size:11px;color:var(--ag-muted)}
+
+/* бөлім тақырыбы */
+.cb_h{display:flex;justify-content:space-between;align-items:baseline;margin:34px 0 14px}
+.cb_h h2{font-size:26px;margin:0}
+.cb_h a{font-size:13px;font-weight:600;color:#8a6a4f;display:inline-flex;gap:6px;align-items:center}
+
+/* курс карточкалары */
+.cb_list{display:grid;grid-template-columns:1fr;gap:14px}
+.cb_c{display:flex;flex-direction:column;background:#fff;border:1px solid var(--ag-line);border-radius:22px;overflow:hidden;color:var(--ag-ink)}
+.cb_cv{display:block;height:130px;background:var(--ag-soft) center/cover no-repeat;position:relative}
+.cb_cv span{position:absolute;left:14px;top:14px;background:#ffffffe0;color:#5b4636;font-size:11px;font-weight:600;border-radius:100px;padding:6px 11px}
+.cb_cb{padding:18px;display:flex;flex-direction:column;flex:1}
+.cb_cb h3{font-size:24px;line-height:1.15;margin:0 0 12px;color:var(--ag-ink)}
+.cb_cb p{font-size:13px;color:var(--ag-muted);margin:-4px 0 14px}
+.cb_pm{display:flex;justify-content:space-between;font-size:12px;color:var(--ag-muted)}
+.cb_pm b{color:var(--ag-ink)}
+.cb_pb{height:6px;border-radius:6px;background:#efe8dd;margin:8px 0 16px;overflow:hidden}
+.cb_pb i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#8a6a4f,#c39b6b)}
+.cb_cf{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.cb_next{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 12px;padding:12px 14px;border-radius:14px;background:var(--ag-soft);color:var(--ag-ink);transition:.2s}
+.cb_next:hover{background:#eadfce}
+.cb_next small{font-size:11px;color:var(--ag-muted)}
+.cb_next b{grid-column:1;font-size:14px;font-weight:600;line-height:1.3}
+.cb_next i{grid-row:1/3;grid-column:2;width:36px;height:36px;border-radius:50%;background:#5b4636;color:#fff;display:grid;place-items:center;font-size:12px}
+.cb_done i{background:#48715e}
+.cb_days{font-size:12px;color:var(--ag-muted)}
+.cb_club .cb_cb{background:linear-gradient(180deg,#fff,#faf5ee)}
+
+.cb_empty{background:#fff;border:1px dashed #d8c8b2;border-radius:22px;padding:34px 22px;text-align:center}
+.cb_empty>i{font-size:30px;color:#a78356}
+.cb_empty h3{font-size:24px;margin:12px 0 6px}
+.cb_empty p{font-size:14px;color:var(--ag-muted);margin-bottom:18px}
+
+/* ұсыныс + көмек */
+.cb_two{display:grid;grid-template-columns:1fr;gap:0 24px}
+.cb_rec, .cb_help{display:grid;gap:10px}
+.cb_ri, .cb_help a{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--ag-line);border-radius:18px;padding:12px;color:var(--ag-ink);transition:.2s}
+.cb_ri:hover, .cb_help a:hover{border-color:#d2bc9f;transform:translateX(2px)}
+.cb_ri_im{width:64px;height:64px;flex-shrink:0;border-radius:14px;background:var(--ag-soft) center/cover no-repeat}
+.cb_ri>div:nth-child(2), .cb_help a>div{flex:1;min-width:0}
+.cb_ri b, .cb_help b{display:block;font-size:14px;font-weight:600}
+.cb_ri small, .cb_help small{font-size:12px;color:var(--ag-muted)}
+.cb_ri>i{color:#a78356;padding-right:6px}
+.cb_help a>i{width:44px;height:44px;flex-shrink:0;border-radius:14px;background:var(--ag-soft);display:grid;place-items:center;color:#5b4636;font-size:18px}
+.cb_help a:first-child>i{background:#25d36622;color:#1c9c4c}
+
+/* аяқталғандар */
+.cb_off{display:grid;gap:10px}
+.cb_oi{display:flex;align-items:center;gap:14px;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--ag-line);opacity:.85}
+.cb_oi>i{color:var(--ag-muted)}
+.cb_oi>div{flex:1}
+.cb_oi b{display:block;font-size:14px}
+.cb_oi small{font-size:12px;color:var(--ag-muted)}
+.cb_oi a{font-size:13px;font-weight:600;color:#8a6a4f;padding:8px 12px;border-radius:100px;background:var(--ag-soft)}
+
+@media (min-width:640px){
+	.cb_hero{flex-direction:row;align-items:center;justify-content:space-between;padding:34px}
+	.cb_ring{align-self:center;width:150px;height:150px}
+	.cb_ring>div{width:120px;height:120px}
+	.cb_kpi{grid-template-columns:repeat(4,1fr)}
+	.cb_list{grid-template-columns:1fr 1fr}
+}
+@media (min-width:1024px){
+	.cb{padding:28px 0 60px}
+	.cb_hero{padding:44px 48px}
+	.cb_hero h1{font-size:46px}
+	.cb_hero p{font-size:21px}
+	.cb_ring{width:170px;height:170px;margin-right:20px}
+	.cb_ring>div{width:136px;height:136px}
+	.cb_ring b{font-size:36px}
+	.cb_list{grid-template-columns:repeat(3,1fr);gap:18px}
+	.cb_h h2{font-size:32px}
+	.cb_two{grid-template-columns:1.3fr 1fr}
+}

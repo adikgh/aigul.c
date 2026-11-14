@@ -15,124 +15,153 @@
 	// $item = db::query("select * from c_sub_item where sub_id = '$sub_id' order by number asc");
 
 
+	// Белсенді курстар бойынша нақты прогресс: көрген сабақ / барлық сабақ
+	$active = []; $total_done = 0; $total_all = 0; $min_days = null;
+	while ($b = mysqli_fetch_assoc($buy)) {
+		$c = fun::cours($b['cours_id']); if (!$c) continue;
+		$cid = (int)$b['cours_id']; $pid = (int)$b['pack_id'];
+		$where = $pid ? "b.pack_id = '$pid'" : "p.cours_id = '$cid'";
+		$ls = db::query("select l.id, l.name_kz, l.number, (select count(*) from c_buy_lesson v where v.lesson_id = l.id and v.user_id = '$user_id' and v.lesson_view = 1) as seen
+			from c_lesson l join c_block b on b.id = l.block_id join c_pack p on p.id = b.pack_id
+			where $where and (l.arh is null or l.arh = 0) order by b.number asc, l.number asc");
+		$all = 0; $done = 0; $next = null;
+		while ($l = mysqli_fetch_assoc($ls)) { $all++; if ($l['seen']) $done++; elseif (!$next) $next = $l; }
+		$days = $b['end_dt'] ? max(0, (int)floor((strtotime($b['end_dt']) - time()) / 86400)) : null;
+		if ($days !== null && ($min_days === null || $days < $min_days)) $min_days = $days;
+		$total_done += $done; $total_all += $all;
+		$active[] = ['c' => $c, 'b' => $b, 'all' => $all, 'done' => $done, 'next' => $next, 'days' => $days, 'pr' => $all ? round($done * 100 / $all) : 0];
+	}
+	$total_pr = $total_all ? round($total_done * 100 / $total_all) : 0;
+	$continue = null; foreach ($active as $a) if ($a['next']) { $continue = $a; break; }
+
+	// Сатып алынбаған өнімдер — ұсыныс
+	$rec = db::query("select * from cours where offer = 1 and id not in (select cours_id from c_buy where user_id = '$user_id' and cours_id is not null) order by number asc limit 3");
+
+	// Сәлемдесу және күн ойы
+	$hr = (int)date('G');
+	$hello = $hr < 12 ? 'Қайырлы таң' : ($hr < 18 ? 'Қайырлы күн' : 'Қайырлы кеш');
+	$quotes = ['Бейсанадан санаға көтерілгенде барлық нәрсенің шешімі пайда болады.', 'Өміріңіз өзгерсін десеңіз, алдымен ойыңызды өзгертіңіз.', 'Сенің қолыңнан бәрі келеді. Тек сол нәрсені жасауға өзіңе рұқсат бер.', 'Мәселенің шешімі көбіне сыртта емес, ішімізде.', 'Өзіңді бар қалпыңда қабылдау — өзгерістің бірінші қадамы.'];
+	$quote = $quotes[(int)date('z') % count($quotes)];
+
 	// Сайттың баптаулары
 	$menu_name = 'my';
-	$site_set['utop_nm'] = 'Курстар';
+	$site_set['utop_nm'] = 'Менің кабинетім';
 	$site_set['um_menu'] = true;
 	$site_set['ut_l'] = false;
-	$css = ['education/cours'];
-	// $js = [''];
+	$css = ['education/cours', 'aigul_cab'];
 ?>
 <?php include "../block/header.php"; ?>
 
-	<div class="ucours">
+	<div class="cb">
 		<div class="bl_c">
-			
-			<div class="head_c">
-				<h4>Менің өнімдерім</h4>
+
+			<!-- сәлемдесу -->
+			<div class="cb_hero">
+				<div class="cb_hero_t">
+					<div class="cb_k"><?=date('d.m.Y')?> · жеке кеңістігіңіз</div>
+					<h1><?=$hello?>, <?=e($user['name'])?></h1>
+					<p>«<?=$quote?>»</p>
+					<?php if ($continue): ?>
+						<a class="cb_btn" href="/education/course/lesson/?id=<?=$continue['next']['id']?>">Оқуды жалғастыру <i class="fal fa-arrow-right"></i></a>
+					<?php else: ?>
+						<a class="cb_btn" href="/#products">Бағдарлама таңдау <i class="fal fa-arrow-right"></i></a>
+					<?php endif ?>
+				</div>
+				<div class="cb_ring" style="--p:<?=$total_pr?>">
+					<div><b><?=$total_pr?>%</b><span>жалпы прогресс</span></div>
+				</div>
 			</div>
 
-			<div class="uc_d">
+			<!-- көрсеткіштер -->
+			<div class="cb_kpi">
+				<div><i class="fal fa-layer-group"></i><b><?=count($active)?></b><span>белсенді бағдарлама</span></div>
+				<div><i class="fal fa-check-circle"></i><b><?=$total_done?></b><span>өтілген сабақ</span></div>
+				<div><i class="fal fa-book-open"></i><b><?=max(0, $total_all - $total_done)?></b><span>қалған сабақ</span></div>
+				<div><i class="fal fa-hourglass-half"></i><b><?=($min_days === null ? '∞' : $min_days)?></b><span>күн қолжетімді</span></div>
+			</div>
 
-				<?php if (mysqli_num_rows($sub_buy)): ?>
-					<?php $cours_d = fun::sub(1); ?>
-						
-					<div class="uc_di ">
-						<a class="uc_dio" href="/education/club/">
-							<div class="uc_di_img">
-								<div class="uc_di_imgc lazy_img" data-src="/assets/uploads/course/<?=$cours_d['img']?>"></div>
-							</div>
-							<div class="uc_dic">
-								<div class="uc_dih"><?=$cours_d['name_'.$lang]?></div>
-								<div class="uc_din">
-									<div class="uc_did3"></div>
+			<!-- менің бағдарламаларым -->
+			<div class="cb_h"><h2>Менің бағдарламаларым</h2><a href="/#products">Каталог <i class="fal fa-arrow-right"></i></a></div>
+			<?php if (!count($active) && !mysqli_num_rows($sub_buy)): ?>
+				<div class="cb_empty">
+					<i class="fal fa-seedling"></i>
+					<h3>Әзірге бағдарлама жоқ</h3>
+					<p>Өзіңізге жақын тақырыпты таңдаңыз. Сатып алған соң сабақтар осы жерде ашылады.</p>
+					<a class="cb_btn cb_btn_d" href="/#quiz">Өзіме сай бағдарламаны табу</a>
+				</div>
+			<?php else: ?>
+				<div class="cb_list">
+					<?php foreach ($active as $a): ?>
+						<div class="cb_c">
+							<a class="cb_cv" href="/education/my/item.php?id=<?=$a['c']['id']?>&cat=<?=$a['c']['category_id']?>" style="background-image:url('/assets/uploads/cours/<?=e($a['c']['img'])?>')">
+								<span><?=e(fun::category_name($a['c']['category_id'], $lang))?></span>
+							</a>
+							<div class="cb_cb">
+								<a href="/education/my/item.php?id=<?=$a['c']['id']?>&cat=<?=$a['c']['category_id']?>"><h3><?=e($a['c']['name_'.$lang])?></h3></a>
+								<div class="cb_pm"><span><?=$a['done']?> / <?=$a['all']?> сабақ</span><b><?=$a['pr']?>%</b></div>
+								<div class="cb_pb"><i style="width:<?=$a['pr']?>%"></i></div>
+								<div class="cb_cf">
+									<?php if ($a['next']): ?>
+										<a class="cb_next" href="/education/course/lesson/?id=<?=$a['next']['id']?>"><small>Келесі сабақ</small><b><?=e($a['next']['name_kz'])?></b><i class="fal fa-play"></i></a>
+									<?php elseif ($a['all']): ?>
+										<div class="cb_next cb_done"><small>Құттықтаймыз!</small><b>Барлық сабақ өтілді</b><i class="fal fa-check"></i></div>
+									<?php endif ?>
+									<?php if ($a['days'] !== null): ?><div class="cb_days"><i class="fal fa-clock"></i> <?=$a['days']?> күн қалды</div><?php endif ?>
 								</div>
+							</div>
+						</div>
+					<?php endforeach ?>
+
+					<?php if (mysqli_num_rows($sub_buy)): ?>
+						<?php $club = fun::sub(1); ?>
+						<a class="cb_c cb_club" href="/education/club/">
+							<div class="cb_cv" style="background-image:url('/assets/uploads/cours/<?=e($club['img'])?>')"><span>Клуб</span></div>
+							<div class="cb_cb">
+								<h3><?=e($club['name_'.$lang])?></h3>
+								<p>Топтық эфирлер, медитациялар және қолдау чаты.</p>
+								<div class="cb_next"><small>Клубқа өту</small><b>Жаңа материалдар</b><i class="fal fa-arrow-right"></i></div>
 							</div>
 						</a>
-						<div class="btn btn_cm btn_dd uc_di_btn"><i class="fal fa-long-arrow-right"></i></div>
-					</div>
-				<?php endif ?>
+					<?php endif ?>
+				</div>
+			<?php endif ?>
 
-				<?php if (mysqli_num_rows($buy)): ?>
-
-					<?php while($buy_d = mysqli_fetch_array($buy)): ?>
-						<?php $cours_id = $buy_d['cours_id']; ?>
-						<?php $cours_d = fun::cours($buy_d['cours_id']); ?>
-							
-						<?php $open = true; $result = 0; $access = 0; $precent = 0; ?>
-						<?php if ($buy_d['ins_dt'] != null && $buy_d['end_dt'] != null): ?>
-							<?php $result = intval((strtotime($buy_d['end_dt']) - strtotime(date("d.m.Y"))) / (60*60*24)); ?>
-							<?php $access = intval((strtotime($buy_d['end_dt']) - strtotime($buy_d['ins_dt'])) / (60*60*24)); ?>
-							<?php if ($result <= 0) $open = false; ?>
-							<?php 	if (($access - $result) == 0) $precent = 0; elseif (($access - $result) < $access) $precent = round(100 / ($access / ($access - $result))); else $precent = 100; ?>
-						<?php endif ?>
-
-						<div class="uc_di <?=(!$open||$buy_d['off']?'uc_di_lock':'')?>">
-							<a class="uc_dio" href="/education/my/item.php?id=<?=$cours_d['id']?>&cat=<?=$cours_d['category_id']?>" data-id="<?=$buy_d['id']?>">
-								<div class="uc_di_img">
-									<div class="uc_di_imgc lazy_img" data-src="/assets/uploads/course/<?=$cours_d['img']?>"></div>
-									<div class="uc_dip">
-										<?php if ($cours_d['new']): ?><div class="uc_dipi uc_dipi_new">Жаңа</div><?php endif ?>
-										<div class="uc_dipi"><?=fun::category_name($cours_d['category_id'], $lang)?></div>
-									</div>
-									<?php if (!$open || $buy_d['off']): ?>
-										<!-- <div class="uc_di_imgs"><i class="fal fa-hourglass-end"></i></div> -->
-										<!-- <div class="uc_di_imgs">Жуырда</div> -->
-									<?php else: ?>
-										<?php if ($buy_d['ins_dt'] != null && $buy_d['end_dt'] != null): ?>
-											<div class="uc_di_jh">
-												<div class="uc_di_jhc" style="width:<?=$precent?>%"></div>
-												<div class="uc_di_jhn"><?=$precent?>%</div>
-											</div>
-										<?php endif ?>
-									<?php endif ?>
-								</div>
-								<div class="uc_dic">
-									<div class="uc_dih"><?=$cours_d['name_'.$lang]?></div>
-									<div class="uc_din">
-										<div class="uc_did3"></div>
-									</div>
-								</div>
-							</a>
-							<div class="btn btn_cm btn_dd uc_di_btn"><i class="fal fa-long-arrow-right"></i></div>
+			<!-- ұсыныстар және көмек -->
+			<div class="cb_two">
+				<div>
+					<?php if (mysqli_num_rows($rec)): ?>
+						<div class="cb_h"><h2>Сізге ұсынамыз</h2></div>
+						<div class="cb_rec">
+							<?php while ($r = mysqli_fetch_assoc($rec)): ?>
+								<a class="cb_ri" href="/cours/item.php?id=<?=$r['id']?>">
+									<div class="cb_ri_im" style="background-image:url('/assets/uploads/cours/<?=e($r['img'])?>')"></div>
+									<div><b><?=e($r['name_kz'])?></b><small><?=e($r['add_name_kz'])?> · <?=number_format((int)$r['price'], 0, '.', ' ')?> ₸</small></div>
+									<i class="fal fa-arrow-right"></i>
+								</a>
+							<?php endwhile ?>
 						</div>
-
-					<?php endwhile ?>
-					
-				<?php endif ?>
-
+					<?php endif ?>
+				</div>
+				<div>
+					<div class="cb_h"><h2>Көмек керек пе?</h2></div>
+					<div class="cb_help">
+						<a href="https://wa.me/<?=$site['whatsapp']?>" target="_blank"><i class="fab fa-whatsapp"></i><div><b>Қолдау қызметі</b><small>Сабақ ашылмаса, жазыңыз</small></div></a>
+						<a href="https://wa.me/<?=$site['whatsapp']?>?text=<?=rawurlencode('Сәлеметсіз бе! Жеке терапияға жазылғым келеді.')?>" target="_blank"><i class="fal fa-leaf"></i><div><b>Жеке терапия</b><small>Айгүл Асқармен онлайн / оффлайн</small></div></a>
+						<a href="/education/acc/"><i class="fal fa-user"></i><div><b>Профиль</b><small>Аты-жөні, телефон, құпия сөз</small></div></a>
+					</div>
+				</div>
 			</div>
 
-
 			<?php if (mysqli_num_rows($buy_off)): ?>
-				<div class="head_c">
-					<h4>Доступ аяқталған курстар</h4>
-				</div>
-
-				<div class="uc_d">
-					<?php while($buy_d = mysqli_fetch_array($buy_off)): ?>
-						<?php 	$cours_id = $buy_d['cours_id']; ?>
-						<?php $cours_d = fun::cours($buy_d['cours_id']); ?>
-
-						<div class="uc_di uc_di_lock">
-							<a class="uc_dio" >
-								<div class="uc_di_img">
-									<div class="uc_di_imgc lazy_img" data-src="/assets/uploads/course/<?=$cours_d['img']?>"></div>
-									<div class="uc_dip">
-										<div class="uc_dipi"><?=fun::category_name($cours_d['category_id'], $lang)?></div>
-									</div>
-									<div class="uc_di_imgs"><i class="fal fa-lock"></i></div>
-								</div>
-								<div class="uc_dic">
-									<div class="uc_dih"><?=$cours_d['name_'.$lang]?></div>
-									<div class="uc_din">
-										<div class="uc_did3">Доступ аяқталған</div>
-									</div>
-								</div>
-							</a>
-							<div class="btn btn_cm btn_dd uc_di_btn"><i class="fal fa-long-arrow-right"></i></div>
+				<div class="cb_h"><h2>Қолжетімділігі аяқталған</h2></div>
+				<div class="cb_off">
+					<?php while ($b = mysqli_fetch_assoc($buy_off)): ?>
+						<?php $c = fun::cours($b['cours_id']); if (!$c) continue; ?>
+						<div class="cb_oi">
+							<i class="fal fa-lock"></i>
+							<div><b><?=e($c['name_'.$lang])?></b><small><?=($b['end_dt'] ? date('d.m.Y', strtotime($b['end_dt'])).' аяқталды' : 'Аяқталды')?></small></div>
+							<a href="https://wa.me/<?=$site['whatsapp']?>?text=<?=rawurlencode('Сәлеметсіз бе! «'.$c['name_kz'].'» курсын ұзартқым келеді.')?>" target="_blank">Ұзарту</a>
 						</div>
-
 					<?php endwhile ?>
 				</div>
 			<?php endif ?>

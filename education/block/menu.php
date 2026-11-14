@@ -82,6 +82,15 @@
    </div>
 <?php endif ?>
 
+<?php if ($user_id && !$user_right): ?>
+	<nav class="agmb">
+		<a class="<?=($menu_name=='my'?'act':'')?>" href="/education/my/"><i class="fal fa-home-alt"></i><span>Басты</span></a>
+		<a href="/#products"><i class="fal fa-layer-group"></i><span>Каталог</span></a>
+		<a class="<?=($menu_name=='club'?'act':'')?>" href="/education/club/"><i class="fal fa-spa"></i><span>Клуб</span></a>
+		<a class="<?=($menu_name=='acc'?'act':'')?>" href="/education/acc/"><i class="fal fa-user"></i><span>Профиль</span></a>
+	</nav>
+<?php endif ?>
+
 <div class="app">
 
 	<?php if ($site_set['header']): ?>

@@ -5,7 +5,7 @@
 		<footer class="footer">
 			<div class="bl_c">
 				<div class="footer_b">
-					<div class="footer_bl">© 2023 «<?=$site['name']?>»</div>
+					<div class="footer_bl">© <?=date("Y")?> «<?=$site['name']?>»</div>
 					<div class="footer_br">
 						<a href="https://gprog.kz" target="_blank" class="gprog_bl">
 							<span>#gprog-та</span>

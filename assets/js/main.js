@@ -136,6 +136,7 @@ $(document).ready(function() {
 
 
 	// 
+	if (typeof Swiper !== "undefined") {
 	var swiper = new Swiper(".swiper_catalog", {
 		slidesPerView: "auto",
 		navigation: {
@@ -150,6 +151,7 @@ $(document).ready(function() {
 		  prevEl: ".swiper-button-prev2",
 		},
 	});
+	}
 
 
 

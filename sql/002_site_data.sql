@@ -14,7 +14,7 @@
 
 LOCK TABLES `site` WRITE;
 INSERT INTO `site` (`id`,`site`,`name`,`phone`,`phone_view`,`whatsapp`,`whatsapp_view`,`instagram`,`telegram`,`youtube`,`tik-tok`,`metrika`,`analitics`,`pixel`,`mail`) VALUES
-(1,'aigul.kz','AIGUL ASQAR','87000000000','8 (700) 000-00-00','77000000000','8 (700) 000-00-00','aigul.asqar','aigul_asqar',NULL,NULL,NULL,NULL,NULL,'info@aigul.kz');
+(1,'aigul.kz','AIGUL ASQAR','87759243907','+7 (775) 924-39-07','77082635937','+7 (708) 263-59-37','aigul_askar07',NULL,NULL,NULL,NULL,NULL,NULL,'info@aigul.kz');
 UNLOCK TABLES;
 
 LOCK TABLES `word` WRITE;

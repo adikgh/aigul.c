@@ -91,3 +91,14 @@ input, textarea, select{font-family:var(--ag-sans)}
 .emoji_wave{font-size:40px;line-height:1}
 .up_logo_icons i, .upl_logo_img i{font-size:28px;color:var(--ag-muted)}
 .oko_s_card{display:inline-flex;gap:10px;align-items:center;padding:16px 22px;border:1px solid var(--ag-line);border-radius:12px;background:#fff;font-size:20px;cursor:pointer;margin:15px 0}
+
+/* Клиенттің мобильді төменгі мәзірі */
+.agmb{display:none}
+@media (max-width:768px){
+	.agmb{position:fixed;z-index:999;left:10px;right:10px;bottom:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:6px;border-radius:20px;background:rgba(42,34,28,.95);backdrop-filter:blur(10px);box-shadow:0 10px 30px -10px #0006}
+	.agmb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:52px;border-radius:15px;color:#d9ccb9;font-size:11px}
+	.agmb a i{font-size:17px}
+	.agmb a.act{background:#4a3d33;color:#fff}
+	body .app{padding-bottom:80px}
+	.cmenu{display:none}
+}
