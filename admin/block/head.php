@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/> -->
 
-<title><?=$menu['title_'.$lang]?> | <?=$site['name']?></title>
+<title><?=(!empty($menu['title_'.$lang]) ? $menu['title_'.$lang].' | ' : (!empty($site_set['utop_nm']) ? strip_tags($site_set['utop_nm']).' | ' : ''))?><?=$site['name']?></title>
 <meta name="description" content="<?=$menu['disc_'.$lang]?> <?=$site['phone_view']?>">
 <meta name="keywords" content="<?=$menu['keyw_'.$lang]?>">
 <meta name="theme-color" content="<?=$site['color']?>">
