@@ -1,4 +1,4 @@
-<div class="lsb_i <?=(($sql['number']>$sub_info_d['lesson_stage'] && $lesson_d['type']==1)?'dsp_n':'')?> <?=(($sql['number']<$sub_info_d['lesson_stage'])?'lsb_act':'')?>" data-number="<?=$sql['number']?>" data-type="<?=$sql['type']?>">
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><div class="lsb_i <?=(($sql['number']>$sub_info_d['lesson_stage'] && $lesson_d['type']==1)?'dsp_n':'')?> <?=(($sql['number']<$sub_info_d['lesson_stage'])?'lsb_act':'')?>" data-number="<?=$sql['number']?>" data-type="<?=$sql['type']?>">
    <div class="lsb_ic">
       <div class="lsb_i2">
          <!-- <div class="lsb_i2_l"><?=$sql['icon']?></div> -->

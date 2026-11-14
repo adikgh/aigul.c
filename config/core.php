@@ -7,9 +7,10 @@
 	// Қателерді экранға шығармай, logs/php-error.log файлына жазамыз (debug => true болса экранға шығады)
 	$_debug = !empty($config['debug']);
 	ini_set('display_errors', $_debug ? '1' : '0');
+	// Ескі код Notice/Warning көп береді: оларды экранға да, логқа да шығармаймыз, тек нағыз қателер (Fatal) көрінеді
 	ini_set('log_errors', '1');
 	ini_set('error_log', dirname(__DIR__).'/logs/php-error.log');
-	error_reporting($_debug ? E_ALL : (E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED));
+	error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED & ~E_STRICT);
 	require_once __DIR__.'/db.class.php';
 	require_once __DIR__.'/fun.php';
 	require_once __DIR__.'/t.php';
@@ -39,13 +40,15 @@
 
 			if (session_status() !== PHP_SESSION_ACTIVE) {
 				ini_set('session.gc_maxlifetime', self::REMEMBER);
-				session_set_cookie_params([
-					'lifetime' => self::REMEMBER,
-					'path' => '/',
-					'secure' => self::https(),
-					'httponly' => true,
-					'samesite' => 'Lax',
-				]);
+				if (PHP_VERSION_ID >= 70300) {
+					session_set_cookie_params([
+						'lifetime' => self::REMEMBER,
+						'path' => '/',
+						'secure' => self::https(),
+						'httponly' => true,
+						'samesite' => 'Lax',
+					]);
+				} else session_set_cookie_params(self::REMEMBER, '/; samesite=Lax', '', self::https(), true);
 				session_start();
 			}
 
@@ -107,9 +110,7 @@
 			session_regenerate_id(true);
 			$_SESSION['uid'] = (int)$u['id'];
 			$exp = time() + self::REMEMBER;
-			setcookie('aid', $u['id'].'|'.$exp.'|'.self::sign((int)$u['id'], $exp, (string)$u['password']), [
-				'expires' => $exp, 'path' => '/', 'secure' => self::https(), 'httponly' => true, 'samesite' => 'Lax',
-			]);
+			self::cookie('aid', $u['id'].'|'.$exp.'|'.self::sign((int)$u['id'], $exp, (string)$u['password']), $exp);
 			self::$user_data = $u;
 			return true;
 		}
@@ -117,7 +118,13 @@
 		public static function logout() {
 			self::$user_data = array();
 			unset($_SESSION['uid']);
-			setcookie('aid', '', ['expires' => time() - 3600, 'path' => '/']);
+			self::cookie('aid', '', time() - 3600);
+		}
+
+		// PHP 7.3-тен төмен нұсқаларда да жұмыс істейтін cookie
+		public static function cookie($name, $value, $exp) {
+			if (PHP_VERSION_ID >= 70300) setcookie($name, $value, ['expires' => $exp, 'path' => '/', 'secure' => self::https(), 'httponly' => true, 'samesite' => 'Lax']);
+			else setcookie($name, $value, $exp, '/; samesite=Lax', '', self::https(), true);
 		}
 
 		// Кіргеннен кейін қай бетке бару керек: админ → админ панель, клиент → кабинет

@@ -1,4 +1,4 @@
-<?php if ($buy != 0): ?>
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><?php if ($buy != 0): ?>
    <div class="head_c">
       <h3>Менің клубым</h3>
    </div>

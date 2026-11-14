@@ -1,4 +1,4 @@
-<?php if ($buy != 0 || $user_right): ?>
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><?php if ($buy != 0 || $user_right): ?>
    <!--  -->
    <div class="uitemc_u">
       <div class="uitemc_um">

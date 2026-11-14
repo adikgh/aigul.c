@@ -1,4 +1,4 @@
-<?php $block = db::query("select * from c_block where pack_id = '$pack_id'"); ?>
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><?php $block = db::query("select * from c_block where pack_id = '$pack_id'"); ?>
 <?php if (mysqli_num_rows($block) != 0): ?>
    <div class="cours_ls">
       <?php while ($block_d = mysqli_fetch_assoc($block)): ?>

@@ -1,4 +1,4 @@
-<?php $test_id = $sql['test_id']; ?>
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><?php $test_id = $sql['test_id']; ?>
 <?php $test = db::query("select * from test_item where id = '$test_id'"); ?>
 <?php $test_d = mysqli_fetch_assoc($test); ?>
 <?php $test_answer = db::query("select * from test_answer where user_id = '$user_id' and test_id = '$test_id' and lesson_id = '$lesson_id'"); ?>

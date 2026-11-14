@@ -1,4 +1,4 @@
-<?php $ques = db::query("select * from ques where lesson_id = '$lesson_id' and user_id = $user_id"); ?>
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><?php $ques = db::query("select * from ques where lesson_id = '$lesson_id' and user_id = $user_id"); ?>
 <?php if (!mysqli_num_rows($ques)): ?>
    <div class="lsb_i lsb_i_home">
       <div class="lsb_ic">

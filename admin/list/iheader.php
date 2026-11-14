@@ -1,4 +1,4 @@
-<div class="uitemc_u">
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><div class="uitemc_u">
    <div class="uitemc_um">
       <a class="uitemc_umi <?=($pod_menu_name=='all'?'uitemc_umi_act':'')?>" href="/admin/list/">Барлығы (<?=fun::cours_sum()?>)</a>      
       <a class="uitemc_umi <?=($pod_menu_name=='club'?'uitemc_umi_act':'')?>" href="/admin/club/">Клуб <?=($pod_menu_name=='subscription'?'('.mysqli_num_rows($cours).')':'')?></a>

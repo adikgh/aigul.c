@@ -1,4 +1,4 @@
-<div class="">
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><div class="">
    <?php $home_work = db::query("select * from home_work where lesson_id = '$lesson_id' and user_id = $user_id"); ?>
    <?php if (!mysqli_num_rows($home_work)): ?>
       <div class="lsbi_home <?=(($data_number>$sub_info_d['lesson_stage'] && $lesson_d['type']==1)?'dsp_n':'')?>" data-number="<?=$data_number?>" data-type="home_work">

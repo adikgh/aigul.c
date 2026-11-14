@@ -1,4 +1,4 @@
-<div class="lsb_i" data-number="<?=$sql['number']?>" data-type="<?=$sql['type']?>">
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><div class="lsb_i" data-number="<?=$sql['number']?>" data-type="<?=$sql['type']?>">
    <?php if ($sql['type_name']): ?> <div class="lsb_ih"><?=$sql['type_name']?>:</div> <?php endif ?>
    <div class="lsbi_video">
       <div class="container">

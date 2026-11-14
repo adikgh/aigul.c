@@ -1,4 +1,4 @@
-<div class="nvg">
+<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><div class="nvg">
    <div class="nvg_c">
       <div class="nvg_bk clc_back"><i class="fal fa-long-arrow-left"></i></div>
       <a class="nvg_i" href="/education/my">Курсы</a>
