@@ -1,0 +1,64 @@
+/* AIGUL ASQAR — әкімшідегі «Өнімдер» беті */
+.ap{padding:22px 0 110px}
+.ap_k{font-size:10.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--ag-gold);margin-bottom:6px}
+.ap_head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.ap_head h1{font:600 30px/1.1 var(--ag-serif);margin:0;color:var(--ag-ink);letter-spacing:-.3px}
+.ap_head p{font-size:13px;color:var(--ag-muted);margin-top:6px}
+.ap_add{display:inline-flex;align-items:center;gap:9px;height:46px;padding:0 20px;border-radius:12px;background:var(--ag-dark);color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
+.ap_add:hover{background:#3d382f}
+
+.ap_kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.ap_kpi div{background:#fff;border:1px solid var(--ag-line);border-radius:16px;padding:16px;display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center}
+.ap_kpi i{grid-row:span 2;width:40px;height:40px;border-radius:12px;background:var(--ag-soft);display:grid;place-items:center;color:#8a6a4f;font-size:16px}
+.ap_kpi b{font:600 22px/1.1 var(--ag-serif);color:var(--ag-ink);white-space:nowrap}
+.ap_kpi span{font-size:11.5px;color:var(--ag-muted)}
+
+.ap_bar{display:flex;flex-direction:column;gap:12px;margin-bottom:14px}
+.ap_search{position:relative}
+.ap_search i{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--ag-muted)}
+.ap_search input{width:100%;height:46px;border:1px solid var(--ag-line);border-radius:12px;background:#fff;padding:0 14px 0 42px;font-size:14px;color:var(--ag-ink);outline:0}
+.ap_search input:focus{border-color:#d2bc9f}
+.ap_chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.ap_chips::-webkit-scrollbar{display:none}
+.ap_chips span{flex-shrink:0;height:36px;padding:0 15px;border-radius:100px;border:1px solid var(--ag-line);background:#fff;display:inline-flex;align-items:center;font-size:13px;color:#5b5045;cursor:pointer;transition:.2s}
+.ap_chips span:hover{border-color:#d2bc9f}
+.ap_chips span.act{background:var(--ag-dark);border-color:var(--ag-dark);color:#fff}
+
+.ap_list{display:flex;flex-direction:column;gap:10px}
+.ap_i{display:grid;grid-template-columns:76px 1fr;gap:14px;background:#fff;border:1px solid var(--ag-line);border-radius:18px;padding:12px;transition:.2s}
+.ap_i:hover{border-color:#d8c6ad;box-shadow:0 10px 30px -22px #5b463680}
+.ap_im{width:76px;height:76px;border-radius:14px;background:var(--ag-soft) center/cover no-repeat}
+.ap_in{min-width:0;align-self:center}
+.ap_cat{display:inline-block;font-size:10.5px;font-weight:600;color:#8a6a4f;background:var(--ag-soft);border-radius:100px;padding:4px 10px;margin-bottom:6px}
+.ap_in h3{font:600 16px/1.3 var(--ag-serif);margin:0 0 6px;color:var(--ag-ink)}
+.ap_in a:hover h3{color:#8a6a4f}
+.ap_meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--ag-muted)}
+.ap_meta i{font-size:11px;margin-right:3px}
+.ap_pr{grid-column:1/-1;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding-top:10px;border-top:1px dashed var(--ag-line)}
+.ap_pr b{font:600 18px var(--ag-serif);color:var(--ag-ink)}
+.ap_pr s{font-size:13px;color:var(--ag-muted)}
+.ap_pr small{font-size:11.5px;color:var(--ag-muted);margin-left:auto}
+.ap_ac{grid-column:1/-1;display:flex;gap:8px}
+.ap_ac a{height:40px;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:600;transition:.2s}
+.ap_b1{flex:1;background:var(--ag-soft);color:var(--ag-ink)}
+.ap_b1:hover{background:#eadfce}
+.ap_b2{width:40px;border:1px solid var(--ag-line);color:#6b5d4d}
+.ap_b2:hover{background:var(--ag-soft)}
+.ap_none{display:none;text-align:center;padding:40px;color:var(--ag-muted);font-size:14px;border:1px dashed #d8c8b2;border-radius:18px}
+
+@media (min-width:768px){
+	.ap_kpi{grid-template-columns:repeat(4,1fr)}
+	.ap_bar{flex-direction:row;align-items:center}
+	.ap_search{width:300px;flex-shrink:0}
+}
+@media (min-width:1100px){
+	.ap{padding:34px 0 60px}
+	.ap_head h1{font-size:36px}
+	.ap_i{grid-template-columns:96px minmax(0,1fr) 170px auto;align-items:center;gap:20px;padding:14px 18px 14px 14px}
+	.ap_im{width:96px;height:96px}
+	.ap_in h3{font-size:18px}
+	.ap_pr{grid-column:auto;flex-direction:column;align-items:flex-end;gap:2px;padding:0;border:0;text-align:right}
+	.ap_pr small{margin:0}
+	.ap_ac{grid-column:auto}
+	.ap_b1{flex:none;padding:0 16px}
+}

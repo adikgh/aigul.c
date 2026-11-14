@@ -45,7 +45,7 @@
    // $site_set['footer'] = 'false';
    // $site_set['ublock'] = 'true';
    $site_set['utop_nm'] = ($lesson['number']!=0?$lesson['number'].'. ':'').$lesson['name_'.$lang];
-   $site_set['utop_bk'] = 'cours/item/?id='.$cours_id;
+   $site_set['utop_bk'] = 'course/?id='.$cours_id;
    $site_set['plyr'] = 'true';
    $css = ['admin/lesson'];
    // $js = [];
@@ -254,21 +254,21 @@
             <div class="ulesson_btn">
                <div class="ulesson_btn_c">
                   <?php if ($lesson_prev_id): ?>
-                     <a href="/user/cours/lesson/?id=<?=$lesson_prev_id?>" class="btn_prev">
+                     <a href="/admin/course/lesson/?id=<?=$lesson_prev_id?>" class="btn_prev">
                         <div class="btn btn_back2">
                            <i class="fal fa-long-arrow-left"></i>
                            <span>Алдыңғы сабаққа</span>
                         </div>
                      </a>
                   <?php endif ?>
-                  <a href="/user/cours/item/?id=<?=$cours['id']?>" class="btn_end">
+                  <a href="/admin/course/?id=<?=$cours['id']?>" class="btn_end">
                      <div class="btn btn_back_red">
                         <i class="far fa-times"></i>
                         <span>Сабақты аяқтау</span>
                      </div>
                   </a>
                   <?php if ($lesson_next_id): ?>
-                     <a href="/user/cours/lesson/?id=<?=$lesson_next_id?>" class="btn_next">
+                     <a href="/admin/course/lesson/?id=<?=$lesson_next_id?>" class="btn_next">
                         <div class="btn btn_back2">
                            <span>Келесі сабаққа</span>
                            <i class="fal fa-long-arrow-right"></i>

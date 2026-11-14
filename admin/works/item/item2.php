@@ -16,7 +16,7 @@
 	$pod_menu_name = 'works';
 	$site_set = [
 		'utop_nm' => '12 - үй жұмысы',
-		'utop_bk' => 'homework/admin/cours/list.php?id='.$_GET['id'].'&lesson_id='.$lesson_id,
+		'utop_bk' => 'works/lesson.php?id='.$_GET['id'].'&lesson_id='.$lesson_id,
       'autosize' => true,
 	];
 	$css = ['user', 'uhomework', 'uchat'];

@@ -27,7 +27,7 @@
 	$pod_menu_name = 'works';
 	$site_set = [
 		'utop_nm' => $lesson_d['number'].'. '.$lesson_d['name_'.$lang].' ('.$cours_d['name_'.$lang].') - үй жұмысы',
-		'utop_bk' => 'homework/admin/cours/?id='.$cours_id,
+		'utop_bk' => 'works/',
 	];
 	$css = ['user', 'uitem', 'uhomework'];
 	$js = ['user', 'admin'];

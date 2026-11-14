@@ -13,15 +13,15 @@
             <span>Сұрыптау</span>
          </div>
          <div class="menu_c ucours_tma">
-            <a class="menu_ci" href="/admin/products/all/?sort=1">
+            <a class="menu_ci" href="?sort=1">
                <div class="menu_cin"><i class="fal fa-circle"></i></div>
                <div class="menu_cih">по дата создание</div>
             </a>
-            <a class="menu_ci" href="/admin/products/all/?sort=1">
+            <a class="menu_ci" href="?sort=1">
                <div class="menu_cin"><i class="fal fa-circle"></i></div>
                <div class="menu_cih">по названием</div>
             </a>
-            <a class="menu_ci" href="/admin/products/all/?sort=1">
+            <a class="menu_ci" href="?sort=1">
                <div class="menu_cin"><i class="fal fa-circle"></i></div>
                <div class="menu_cih">по ценам</div>
             </a>

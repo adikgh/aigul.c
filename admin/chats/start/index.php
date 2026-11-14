@@ -30,8 +30,8 @@
 				<div class="ucours_t" id="ucours_t">
 					<div class="swiper ucours_tm swiper_catalog2">
 					<div class="swiper-wrapper">
-							<a class="swiper-slide ucours_tm_i <?=($type=='all'?'ucours_tm_act':'')?>" href="/user/chat/admin/start/">Барлығы</a>
-							<a class="swiper-slide ucours_tm_i <?=($type=='club'?'ucours_tm_act':'')?>" href="/user/chat/admin/start/?type=club">Клуб мүшелері</a>
+							<a class="swiper-slide ucours_tm_i <?=($type=='all'?'ucours_tm_act':'')?>" href="/admin/chats/start/">Барлығы</a>
+							<a class="swiper-slide ucours_tm_i <?=($type=='club'?'ucours_tm_act':'')?>" href="/admin/chats/start/?type=club">Клуб мүшелері</a>
 						</div>
 						<div class="swiper-button-prev2 swiper-button-prev"><i class="fal fa-chevron-left"></i></div>
 						<div class="swiper-button-next2 swiper-button-next"><i class="fal fa-chevron-right"></i></div>

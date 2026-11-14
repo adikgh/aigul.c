@@ -1,5 +1,4 @@
-<?php if (!class_exists("core")) { http_response_code(404); exit; } ?><?php
+<?php include "../../config/core_edu.php";
 
-	$id = $_GET['id'];
-	$cat_id = $_GET['cat'];
+	$id = (int)@$_GET['id'];
 	go('/education/course/?id='.$id);

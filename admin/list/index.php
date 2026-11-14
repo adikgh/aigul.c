@@ -3,71 +3,108 @@
 	// Қолданушыны тексеру
 	if (!$user_id) go('/admin/');
 
-	// 
-	$cours = db::query("select * from cours ORDER BY ins_dt DESC");
-	
+	// Өнімдер және олардың көрсеткіштері
+	$cours = db::query("select c.*,
+		(select count(*) from c_lesson l where l.cours_id = c.id) as ls_cnt,
+		(select count(distinct b.user_id) from c_buy b where b.cours_id = c.id) as st_cnt,
+		(select count(distinct b.user_id) from c_buy b where b.cours_id = c.id and (b.end_dt is null or b.end_dt > now())) as act_cnt
+		from cours c ORDER BY c.ins_dt DESC");
+	$items = []; $cats = [];
+	while ($r = mysqli_fetch_assoc($cours)) {
+		$r['pack'] = fun::pack_one($r['id']);
+		$r['cat'] = fun::category_name($r['category_id'], $lang);
+		if ($r['cat']) $cats[$r['category_id']] = $r['cat'];
+		$items[] = $r;
+	}
+	$k_students = mysqli_fetch_row(db::query("select count(distinct user_id) from c_buy"))[0];
+	$k_lessons = mysqli_fetch_row(db::query("select count(*) from c_lesson"))[0];
+	$k_sum = mysqli_fetch_row(db::query("select coalesce(sum(coalesce(nullif(p.price_sole,0), p.price)),0) from c_buy b join c_pack p on p.id = b.pack_id"))[0];
+
 	// Сайттың баптаулары
 	$menu_name = 'list';
 	$pod_menu_name = 'all';
-	$site_set['utop_nm'] = 'Курстар';
+	$site_set['utop_nm'] = 'Өнімдер';
 	$site_set['um_menu'] = true;
 	$site_set['utop'] = false;
-	// $site_set['ut_l'] = false;
-	$css = ['admin/cours'];
+	$css = ['admin/cours', 'aigul_products'];
 	$js = ['admin/cours'];
 ?>
 <?php include "../block/header.php"; ?>
 
-	<div class="ucours">
+	<div class="ap">
 		<div class="bl_c">
 
-			<div class="head_c">
-				<h4>Өнімдер</h4>
+			<div class="ap_head">
+				<div>
+					<div class="ap_k">Әкімші панелі</div>
+					<h1>Өнімдер</h1>
+					<p><?=count($items)?> өнім · <?=$k_students?> оқушы</p>
+				</div>
+				<div class="ap_add cours_add_pop"><i class="fal fa-plus"></i> Өнім қосу</div>
 			</div>
 
-			<?php // include "iheader.php"; ?>
+			<div class="ap_kpi">
+				<div><i class="fal fa-layer-group"></i><b><?=count($items)?></b><span>Өнімдер</span></div>
+				<div><i class="fal fa-user-friends"></i><b><?=$k_students?></b><span>Оқушылар</span></div>
+				<div><i class="fal fa-play-circle"></i><b><?=$k_lessons?></b><span>Сабақтар</span></div>
+				<div><i class="fal fa-wallet"></i><b class="fr_price"><?=$k_sum?></b><span>Сатылым сомасы</span></div>
+			</div>
 
-			<div class="uc_d">
-
-				<div class="uc_di uc_do cours_add_pop">
-					<i class="fal fa-plus"></i>
-					<span>Өнім қосу</span>
+			<div class="ap_bar">
+				<div class="ap_search"><i class="fal fa-search"></i><input type="text" placeholder="Өнімді іздеу" oninput="apFilter()" id="ap_q"></div>
+				<div class="ap_chips">
+					<span class="act" data-cat="0" onclick="apCat(this)">Барлығы</span>
+					<?php foreach ($cats as $cid => $cn): ?><span data-cat="<?=$cid?>" onclick="apCat(this)"><?=e($cn)?></span><?php endforeach ?>
 				</div>
-				
-				<?php while($cours_d = mysqli_fetch_array($cours)): ?>
-					<?php 	$cours_id = $cours_d['id']; ?>
-					<?php 	$buy = fun::user_buy($cours_id, $user_id); ?>
-					<?php $pack_d = fun::pack_one($cours_d['id']); ?>
+			</div>
 
-					<div class="uc_di">
-						<a class="uc_dio" href="/admin/course/?id=<?=$cours_d['id']?>&cat=<?=$cours_d['category_id']?>">
-							<div class="uc_di_img">
-								<div class="uc_di_imgc lazy_img" data-src="/assets/uploads/course/<?=$cours_d['img']?>"></div>
-								<div class="uc_dip">
-									<div class="uc_dipi"><?=fun::category_name($cours_d['category_id'], $lang)?></div>
-								</div>
+			<div class="ap_list">
+				<?php foreach ($items as $c): $pk = $c['pack']; ?>
+					<div class="ap_i" data-cat="<?=$c['category_id']?>" data-name="<?=e(mb_strtolower($c['name_'.$lang]))?>">
+						<a class="ap_im" href="/admin/course/?id=<?=$c['id']?>&cat=<?=$c['category_id']?>" style="background-image:url('/assets/uploads/course/<?=e($c['img'])?>')"></a>
+						<div class="ap_in">
+							<?php if ($c['cat']): ?><span class="ap_cat"><?=e($c['cat'])?></span><?php endif ?>
+							<a href="/admin/course/?id=<?=$c['id']?>&cat=<?=$c['category_id']?>"><h3><?=e($c['name_'.$lang])?></h3></a>
+							<div class="ap_meta">
+								<span><i class="fal fa-play-circle"></i> <?=$c['ls_cnt']?> сабақ</span>
+								<span><i class="fal fa-user"></i> <?=$c['st_cnt']?> оқушы</span>
+								<span><i class="fal fa-bolt"></i> <?=$c['act_cnt']?> белсенді</span>
 							</div>
-							<div class="uc_dic">
-								<div class="uc_dih"><?=$cours_d['name_'.$lang]?></div>
-								<div class="uc_din">
-									<?php if ($pack_d['price'] || $pack_d['price_sole']): ?>
-										<div class="uc_did">
-											<?php if ($pack_d['price_sole']): ?>
-												<div class="uc_did_s fr_price"><?=$pack_d['price']?></div>
-												<div class="uc_did_p fr_price"><?=$pack_d['price_sole']?></div>
-											<?php else: ?> <div class="uc_did_p fr_price"><?=$pack_d['price']?></div> <?php endif ?>
-										</div>
-									<?php endif ?>
-								</div>
-							</div>
-						</a>
-						<div class="btn btn_cm btn_dd2 uc_di_btn"><i class="far fa-ellipsis-v"></i></div>
+						</div>
+						<div class="ap_pr">
+							<?php if ($pk['price_sole']): ?>
+								<s class="fr_price"><?=$pk['price']?></s><b class="fr_price"><?=$pk['price_sole']?></b>
+							<?php elseif ($pk['price']): ?>
+								<b class="fr_price"><?=$pk['price']?></b>
+							<?php else: ?><b>Тегін</b><?php endif ?>
+							<small><?=$pk['access'] ? $pk['access'].' күн қолжетімді' : ''?></small>
+						</div>
+						<div class="ap_ac">
+							<a href="/admin/course/?id=<?=$c['id']?>&cat=<?=$c['category_id']?>" class="ap_b1"><i class="fal fa-pen"></i> Басқару</a>
+							<a href="/admin/course/lessons.php?id=<?=$c['id']?>" class="ap_b2" title="Сабақтар"><i class="fal fa-list"></i></a>
+							<a href="/admin/course/users/?id=<?=$c['id']?>" class="ap_b2" title="Оқушылар"><i class="fal fa-user-friends"></i></a>
+							<a href="/cours/item.php?id=<?=$c['id']?>" target="_blank" class="ap_b2" title="Сайтта қарау"><i class="fal fa-external-link"></i></a>
+						</div>
 					</div>
-				<?php endwhile ?>
+				<?php endforeach ?>
+				<div class="ap_none">Ештеңе табылмады</div>
 			</div>
 
 		</div>
 	</div>
+
+	<script>
+		var apC = '0';
+		function apCat(el) { document.querySelectorAll('.ap_chips span').forEach(function (s) { s.classList.remove('act'); }); el.classList.add('act'); apC = el.dataset.cat; apFilter(); }
+		function apFilter() {
+			var q = document.getElementById('ap_q').value.trim().toLowerCase(), n = 0;
+			document.querySelectorAll('.ap_i').forEach(function (i) {
+				var ok = (apC == '0' || i.dataset.cat == apC) && (!q || i.dataset.name.indexOf(q) > -1);
+				i.style.display = ok ? '' : 'none'; if (ok) n++;
+			});
+			document.querySelector('.ap_none').style.display = n ? 'none' : 'block';
+		}
+	</script>
 
 <?php include "../block/footer.php"; ?>
 

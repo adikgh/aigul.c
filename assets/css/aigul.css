@@ -11,7 +11,7 @@ body{
 	--ag-soft: #f2ece3;
 	--ag-dark: #292721;
 	--ag-green: #48715e;
-	--ag-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+	--ag-serif: 'Montserrat', Arial, sans-serif;
 	--ag-sans: 'Inter', Arial, sans-serif;
 
 	--bag: #f8f6f2;
@@ -52,8 +52,8 @@ h1, h2, h3, .logo, .head_c h4, .head_c h1, .head_c h2, .hd_h, .ucours_h, .uc_ih,
 	font-weight: 500;
 	letter-spacing: .2px;
 }
-.head_c h4{font-size:32px}
-.logo{letter-spacing:3px;font-size:21px;font-weight:500}
+.head_c h4{font-size:26px;font-weight:600}
+.logo{letter-spacing:3px;font-size:18px;font-weight:500}
 
 /* Батырмалар */
 .btn{

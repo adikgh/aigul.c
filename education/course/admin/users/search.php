@@ -26,7 +26,7 @@
                         <div class="form_im_toggle_btn <?=($buy_d['off']?'':'form_im_toggle_act')?> sub_buy_off" data-id="<?=$buy_d['id']?>"></div>
                      </div>
                   </div>
-                  <a class="uc_uiln" href="/user/admin/users/item/?id=<?=$user_d['id']?>">
+                  <a class="uc_uiln" href="/admin/users/item/?id=<?=$user_d['id']?>">
                      <div class="uc_ui_icon lazy_img" data-src="/assets/img/users/<?=$user_d['img']?>"><?=($user_d['img']!=null?'':'<i class="fal fa-user"></i>')?></div>
                      <div class="uc_uinu">
                         <div class="uc_ui_name"><?=$user_d['name']?> <?=$user_d['surname']?></div>

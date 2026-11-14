@@ -59,7 +59,7 @@
 						<div class="menu_cin"><i class="fal fa-comment-alt-lines"></i></div>
 						<div class="menu_cih">Пікірлер</div>
 					</a>
-					<a class="up_li" href="/admin/works/test/">
+					<a class="up_li" href="/admin/works/tests/">
 						<div class="menu_cin"><i class="fal fa-clipboard-list-check"></i></div>
 						<div class="menu_cih">Тесттер</div>
 					</a>
@@ -96,11 +96,11 @@
 							<div class="menu_cin"><i class="fal fa-comment-dots"></i></div>
 							<div class="menu_cih">Көмек (Whatsapp)</div>
 						</a>
-					<a class="up_li" href="/admin/all/offer.php">
+					<a class="up_li" href="/admin/all/about/offer.php">
 						<div class="menu_cin"><i class="fal fa-users-cog"></i></div>
 						<div class="menu_cih">Қолдану ережелері</div>
 					</a>
-					<a class="up_li" href="/admin/all/privacy.php">
+					<a class="up_li" href="/admin/all/about/privacy.php">
 						<div class="menu_cin"><i class="fal fa-users-cog"></i></div>
 						<div class="menu_cih">Авторлық құқық</div>
 					</a>

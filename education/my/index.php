@@ -21,7 +21,7 @@
 		$c = fun::cours($b['cours_id']); if (!$c) continue;
 		$cid = (int)$b['cours_id']; $pid = (int)$b['pack_id'];
 		$where = $pid ? "b.pack_id = '$pid'" : "p.cours_id = '$cid'";
-		$ls = db::query("select l.id, l.name_kz, l.number, (select count(*) from c_buy_lesson v where v.lesson_id = l.id and v.user_id = '$user_id' and v.lesson_view = 1) as seen
+		$ls = db::query("select l.id, l.name_kz, l.number, (select count(*) from c_buy_lesson v where v.lesson_id = l.id and v.user_id = '$user_id' and v.lesson_end = 1) as seen
 			from c_lesson l join c_block b on b.id = l.block_id join c_pack p on p.id = b.pack_id
 			where $where and (l.arh is null or l.arh = 0) order by b.number asc, l.number asc");
 		$all = 0; $done = 0; $next = null;
@@ -93,11 +93,11 @@
 				<div class="cb_list">
 					<?php foreach ($active as $a): ?>
 						<div class="cb_c">
-							<a class="cb_cv" href="/education/my/item.php?id=<?=$a['c']['id']?>&cat=<?=$a['c']['category_id']?>" style="background-image:url('/assets/uploads/cours/<?=e($a['c']['img'])?>')">
+							<a class="cb_cv" href="/education/course/?id=<?=$a['c']['id']?>" style="background-image:url('/assets/uploads/cours/<?=e($a['c']['img'])?>')">
 								<span><?=e(fun::category_name($a['c']['category_id'], $lang))?></span>
 							</a>
 							<div class="cb_cb">
-								<a href="/education/my/item.php?id=<?=$a['c']['id']?>&cat=<?=$a['c']['category_id']?>"><h3><?=e($a['c']['name_'.$lang])?></h3></a>
+								<a href="/education/course/?id=<?=$a['c']['id']?>"><h3><?=e($a['c']['name_'.$lang])?></h3></a>
 								<div class="cb_pm"><span><?=$a['done']?> / <?=$a['all']?> сабақ</span><b><?=$a['pr']?>%</b></div>
 								<div class="cb_pb"><i style="width:<?=$a['pr']?>%"></i></div>
 								<div class="cb_cf">

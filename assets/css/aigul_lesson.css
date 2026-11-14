@@ -1,0 +1,86 @@
+/* AIGUL ASQAR — сабақ беті: сол жақта видео мен мазмұн, оң жақта сабақтар жоспары */
+.ls{padding:14px 0 110px}
+.ls_nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--ag-muted);margin-bottom:14px}
+.ls_nav a{color:var(--ag-muted)}
+.ls_nav a:hover{color:var(--ag-ink)}
+.ls_nav i{font-size:12px;opacity:.6}
+
+.ls_g{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+.ls_main{display:flex;flex-direction:column;gap:16px;min-width:0}
+.ls_k{font-size:10.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--ag-gold);margin-bottom:8px}
+
+/* видео */
+.ls_video{border-radius:20px;overflow:hidden;background:#292721;aspect-ratio:16/9}
+.ls_video .plyr{height:100%}
+.ls_ph{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:20px;color:#efe6d8;background:radial-gradient(circle at 70% 20%,#3d352c,#292721 60%)}
+.ls_ph i{width:64px;height:64px;border-radius:50%;border:1.5px solid #e7d8c0;display:grid;place-items:center;font-size:22px;padding-left:4px;color:#e7d8c0}
+.ls_ph b{font:500 20px/1.3 var(--ag-serif);max-width:460px}
+.ls_ph span{font-size:12px;color:#a99c89}
+
+/* мазмұн карточкасы */
+.ls_card{background:#fff;border:1px solid var(--ag-line);border-radius:20px;padding:22px 20px}
+.ls_card h1{font:600 24px/1.25 var(--ag-serif);margin:0 0 16px;color:var(--ag-ink);letter-spacing:-.2px}
+.ls_au{display:flex;align-items:center;gap:12px;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--ag-line)}
+.ls_au>span{width:40px;height:40px;border-radius:50%;background:var(--ag-gold2) center/cover no-repeat;display:grid;place-items:center;font-weight:600;color:var(--ag-ink);flex-shrink:0}
+.ls_au>span[style*="background-image"]{font-size:0}
+.ls_au b{display:block;font-size:14px;font-weight:600}
+.ls_au small{font-size:12px;color:var(--ag-muted)}
+.ls_empty{font-size:14px;color:var(--ag-muted)}
+
+/* ескі сабақ бөліктерін жұмсарту */
+.ls_body .lsb_c{display:flex;flex-direction:column;gap:14px}
+.ls_body .lsb_i, .ls_body .lsb_ic{padding:0;margin:0;background:none;border:0;box-shadow:none}
+.ls_body .lsb_ih{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#8a6a4f;margin-bottom:6px}
+.ls_body .prd_txt{font-size:15px;line-height:1.7;color:#4c443a}
+.ls_body .prd_txt p{margin:0 0 10px}
+.ls_body .prd_txt_warning{display:flex;gap:12px;background:var(--ag-soft);border-radius:14px;padding:14px 16px;color:#6b5941;font-size:14px}
+.ls_body .prd_txt_warning i{color:var(--ag-gold);font-size:18px;margin-top:2px}
+.ls_body .head_name{display:none}
+
+.ls_act{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.ls_act form{margin:0}
+.ls_btn, .ls_btn2{display:inline-flex;align-items:center;gap:9px;height:46px;padding:0 20px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:.2s;font-family:var(--ag-sans)}
+.ls_btn{background:var(--ag-gold);color:#fff;border:0}
+.ls_btn:hover{background:#8f6f47;color:#fff}
+.ls_btn2{background:#fff;color:var(--ag-ink);border:1px solid var(--ag-line)}
+.ls_btn2:hover{background:var(--ag-soft)}
+.ls_ok{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 16px;border-radius:12px;background:#48715e14;color:var(--ag-green);font-size:14px;font-weight:600}
+
+.ls_extra .lsbi_home_head, .ls_extra .lsb_ih{font-size:16px;font-weight:600;margin-bottom:10px;color:var(--ag-ink)}
+.ls_extra .lsb_i, .ls_extra .lsb_ic, .ls_extra .lsbi_home, .ls_extra .lsb_i_home{padding:0;margin:0;background:none;border:0;box-shadow:none}
+.ls_extra textarea{min-height:110px;border-radius:12px}
+.ls_extra br{display:none}
+
+.ls_pn{display:flex;justify-content:space-between;gap:10px}
+.ls_pn a{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#8a6a4f;padding:10px 14px;border-radius:100px;background:var(--ag-soft)}
+.ls_pn a:hover{background:#eadfce}
+
+/* оң жақ: жоспар */
+.ls_side{background:#fff;border:1px solid var(--ag-line);border-radius:20px;padding:22px 18px}
+.ls_side h2{font:600 22px var(--ag-serif);margin:0 0 16px;color:var(--ag-ink)}
+.ls_bar{height:5px;border-radius:5px;background:#efe8dd;overflow:hidden}
+.ls_bar i{display:block;height:100%;background:linear-gradient(90deg,#8a6a4f,#c39b6b);border-radius:5px}
+.ls_barn{font-size:12px;color:var(--ag-muted);margin:8px 0 16px}
+.ls_list{display:flex;flex-direction:column;gap:8px}
+.ls_li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--ag-line);border-radius:14px;color:var(--ag-ink);transition:.2s}
+.ls_li:hover{border-color:#d2bc9f}
+.ls_li em{font-style:normal;font:600 15px var(--ag-serif);color:var(--ag-gold);align-self:start}
+.ls_li b{display:block;font-size:14px;font-weight:600;line-height:1.35}
+.ls_li small{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--ag-muted);margin-top:4px}
+.ls_li small i{font-size:10px}
+.ls_li>i{color:var(--ag-muted);font-size:14px}
+.ls_li_act{background:#f7f1e8;border-color:#d8c2a2}
+.ls_li_done small{color:var(--ag-green)}
+.ls_li_lock{opacity:.55;cursor:default}
+
+@media (min-width:1024px){
+	.ls{padding:24px 0 60px}
+	.ls_g{grid-template-columns:minmax(0,1fr) 380px;gap:22px}
+	.ls_card{padding:28px 30px}
+	.ls_card h1{font-size:28px}
+	.ls_side{position:sticky;top:90px;max-height:calc(100vh - 110px);overflow:auto}
+	.ls_ph b{font-size:24px}
+}
+.ls_body .prd_txt_warning{padding:14px 16px !important}
+.ls_body .prd_txt_warning i{position:static !important}
+.ls_body .lsb{margin:0;padding:0}

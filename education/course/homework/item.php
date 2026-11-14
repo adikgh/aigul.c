@@ -10,7 +10,7 @@
 	// site setting
 	$pod_menu_name = 'works';
 	$site_set['utop_nm'] = '12 - үй жұмысы';
-	$site_set['utop_bk'] = 'homework/cours/?id='.$_GET['id'];
+	$site_set['utop_bk'] = 'course/homework/?id='.$_GET['id'];
 	$site_set['autosize'] = true;
 	$site_set['swiper'] = true;
    

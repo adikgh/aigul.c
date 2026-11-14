@@ -1,5 +1,5 @@
 <!-- css -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" />
 <link rel="stylesheet" href="/assets/pl/fontawesome/css/all.min.css" />
 <?php if ($site_set['swiper']): ?> <link rel="stylesheet" href="/assets/pl/swiper-bundle.min.css" /> <?php endif ?>
 <?php if ($site_set['plyr']): ?> <link rel="stylesheet" href="/assets/pl/plyr.css" /> <?php endif ?>

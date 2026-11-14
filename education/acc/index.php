@@ -88,11 +88,11 @@
 						<div class="menu_cin"><i class="fal fa-award"></i></div>
 						<div class="menu_cih">Академия жайлы</div>
 					</a>
-					<a class="up_li" href="/education/all/offer.php">
+					<a class="up_li" href="/education/acc/all/about/offer.php">
 						<div class="menu_cin"><i class="fal fa-users-cog"></i></div>
 						<div class="menu_cih">Қолдану ережелері</div>
 					</a>
-					<a class="up_li" href="/education/all/privacy.php">
+					<a class="up_li" href="/education/acc/all/about/privacy.php">
 						<div class="menu_cin"><i class="fal fa-users-cog"></i></div>
 						<div class="menu_cih">Авторлық құқық</div>
 					</a>

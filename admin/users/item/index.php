@@ -28,7 +28,7 @@
 		<!-- <div class="ucours_t">
 			<div class="ucours_tm swiper swiper_catalog2">
 				<div class="swiper-wrapper">
-					<a class="swiper-slide ucours_tm_i ucours_tm_act" href="/u/admin/users">Барлығы (<?=mysqli_num_rows($user_f)?>)</a>
+					<a class="swiper-slide ucours_tm_i ucours_tm_act" href="/admin/users/">Барлығы (<?=mysqli_num_rows($user_f)?>)</a>
 				</div>
 				<div class="swiper-button-prev2 swiper-button-prev"><i class="fal fa-chevron-left"></i></div>
 				<div class="swiper-button-next2 swiper-button-next"><i class="fal fa-chevron-right"></i></div>

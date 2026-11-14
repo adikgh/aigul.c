@@ -62,15 +62,15 @@
 						<span>Сұрыптау</span>
 					</div>
 					<div class="menu_c ucours_tma">
-						<a class="menu_ci" href="/admin/products/all/?sort=1">
+						<a class="menu_ci" href="?sort=1">
 							<div class="menu_cin"><i class="fal fa-circle"></i></div>
 							<div class="menu_cih">по дата создание</div>
 						</a>
-						<a class="menu_ci" href="/admin/products/all/?sort=1">
+						<a class="menu_ci" href="?sort=1">
 							<div class="menu_cin"><i class="fal fa-circle"></i></div>
 							<div class="menu_cih">по названием</div>
 						</a>
-						<a class="menu_ci" href="/admin/products/all/?sort=1">
+						<a class="menu_ci" href="?sort=1">
 							<div class="menu_cin"><i class="fal fa-circle"></i></div>
 							<div class="menu_cih">по ценам</div>
 						</a>
@@ -130,7 +130,7 @@
 										<div class="form_im_toggle_btn <?=($user_d['locked']?'':'form_im_toggle_act')?> sub_buy_off" data-id="<?=$user_d['id']?>"></div>
 									</div>
 								</div>
-								<a class="uc_uiln" href="/user/admin/users/item/?id=<?=$user_d['id']?>">
+								<a class="uc_uiln" href="/admin/users/item/?id=<?=$user_d['id']?>">
 									<div class="uc_ui_icon lazy_img" data-src="/assets/img/users/<?=$user_d['logo']?>"><?=($user_d['logo']!=null?'':'<i class="fal fa-user"></i>')?></div>
 									<div class="uc_ui_name"><?=$user_d['name']?> <?=$user_d['surname']?></div>
 								</a>

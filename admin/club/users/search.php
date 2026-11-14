@@ -26,7 +26,7 @@
                         </div>
                      </div>
                      <div class="uc_ui_number"><?=$sum?></div>
-                     <a class="uc_uiln" href="/user/admin/users/item/?id=<?=$user_d['id']?>">
+                     <a class="uc_uiln" href="/admin/users/item/?id=<?=$user_d['id']?>">
                         <div class="uc_ui_icon lazy_img" data-src="/assets/img/users/<?=$user_d['logo']?>"><?=($user_d['logo']!=null?'':'<i class="fal fa-user"></i>')?></div>
                         <div class="uc_uinu">
                            <div class="uc_ui_name"><?=$user_d['name']?> <?=$user_d['surname']?></div>
